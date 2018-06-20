@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The lamest table, ever</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <style>
+    body {
+      padding: 3em;
+    }
+
+    table {
+      max-width: 10em;
+    }
+  </style>
+</head>
+<body>
+
+<div id="mainDiv">
+  <button onclick="addRow()" class="btn btn-primary">Add</button>
+
+</div>
+<table class="table">
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+
+  let count = 1;
+  let tableRow = document.querySelector('table');
+
+  function addRow() {
+      let row = tableRow.insertRow(-1);
+      let cellOne = row.insertCell(0);
+      let cellTwo = row.insertCell(1);
+      cellOne.innerHTML = count++;
+      cellTwo.innerHTML = '<button id="remove" onclick="deleteRow(this.parentNode.parentNode.rowIndex)" class="btn btn-danger">Remove</button>';
+  }
+
+  function deleteRow(i) {
+      tableRow.deleteRow(i);
+  }
+
+  /* ditt script här */
+</script>
+
+<!-- I valet mellan (a) individuella eventhanterare på varje knapp och
+     (b) en enda delegerad eventhanterare på hela tabellen -- vilket
+     alternativ föredrar du, och varför? Kan man göra det på båda sätten?
+     Finns det några fördelar med alternativet du inte valde? Diskutera.
+
+      Jag valde individuella eventhanterare då jag valde att skapa en ny knapp för varje rad jag la till i tabellen.
+      Då tyckte jag det var enkelt att lägga på en individuell hantera direkt.
+      Fördelen med en delegerad hanterare är att man tar hela tabelen, med en funktion för att hitta rätt index. En delegerad
+      hanterare sparar mycket minne vilket är en positiv sak när man jobbar med stora appikationer.
+      -->
+
+</body>
+</html>
